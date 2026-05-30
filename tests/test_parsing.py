@@ -72,3 +72,62 @@ class TestHolmwoodScraper:
 
         assert len(results) == 2
         assert results[0].agency == "Holmwood"
+
+
+class TestGrenadierScraper:
+    def test_parse_results_from_html(self):
+        """Parse auction results from saved HTML fixture."""
+        from auction_tracker.scraper.grenadier import GrenadierScraper
+        from bs4 import BeautifulSoup
+
+        raw = load_fixture("grenadier_sample.html")
+        soup = BeautifulSoup(raw, "html.parser")
+
+        scraper = GrenadierScraper()
+        results = []
+
+        for container in soup.select(".result-container"):
+            date_header = container.select_one("h3")
+            sale_date = scraper._parse_date(date_header.get_text(strip=True)) if date_header else None
+            for row in container.select("tbody tr"):
+                result = scraper._parse_row(row, sale_date)
+                if result:
+                    results.append(result)
+
+        assert len(results) > 0
+
+        for r in results:
+            assert r.address
+            assert r.suburb
+            assert r.agency == "Grenadier"
+            assert r.sale_price is not None
+            assert r.sale_price > 0
+
+    def test_extract_price(self):
+        from auction_tracker.scraper.grenadier import GrenadierScraper
+
+        assert GrenadierScraper._extract_price("SOLD $881,500") == 881_500
+        assert GrenadierScraper._extract_price("SOLD $523,000") == 523_000
+        assert GrenadierScraper._extract_price("PRICED AT $789,000") == 789_000
+        assert GrenadierScraper._extract_price("AVAILABLE") is None
+        assert GrenadierScraper._extract_price("PASSED IN") is None
+
+    def test_parse_address(self):
+        from auction_tracker.scraper.grenadier import GrenadierScraper
+
+        street, suburb = GrenadierScraper._parse_address("19 Wakeman Way, Kaiapoi, NZ 7630")
+        assert street == "19 Wakeman Way"
+        assert suburb == "Kaiapoi"
+
+        street, suburb = GrenadierScraper._parse_address("1/18 Sawtell Place, Northcote, NZ 8052")
+        assert street == "1/18 Sawtell Place"
+        assert suburb == "Northcote"
+
+    def test_parse_date(self):
+        from auction_tracker.scraper.grenadier import GrenadierScraper
+
+        d = GrenadierScraper._parse_date("Thursday, 28 May 2026")
+        assert d == date(2026, 5, 28)
+
+        d = GrenadierScraper._parse_date("WEDNESDAY, 30 APRIL 2026")
+        assert d == date(2026, 4, 30)
