@@ -1,0 +1,9 @@
+beautifulsoup4>=4.12
+click>=8.1
+pandas>=2.2
+playwright>=1.40
+pydantic>=2.5
+streamlit>=1.29
+
+[dev]
+pytest>=8.0
