@@ -1,6 +1,6 @@
 """Holmwood scraper — uses AuctionsLive API."""
 import logging
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 import requests
 
 from auction_tracker.models import AuctionResult
@@ -18,8 +18,15 @@ HEADERS = {
 class HolmwoodScraper(BaseScraper):
     agency_name = "Holmwood"
 
-    def scrape(self) -> list[AuctionResult]:
-        """Fetch all pages of past auction results from the AuctionsLive API."""
+    def scrape(self, lookback_days: int | None = None) -> list[AuctionResult]:
+        """Fetch past auction results from the AuctionsLive API.
+
+        Args:
+            lookback_days: Only return results from this many days ago.
+                           None means fetch everything (first run).
+        """
+        cutoff = date.today() - timedelta(days=lookback_days) if lookback_days else None
+
         results = []
         page = 1
         base_url = f"{API_URL}?page={{}}&time_filter=past&auction_type[]=null&filters"
@@ -31,29 +38,43 @@ class HolmwoodScraper(BaseScraper):
             resp.raise_for_status()
             data = resp.json()
 
-            parsed = self._parse_response(data)
+            parsed, hit_old = self._parse_response(data, cutoff)
             results.extend(parsed)
 
             next_page = data.get("nextPageUrl")
-            if not next_page:
+            if not next_page or hit_old:
                 break
             page += 1
 
         return results
 
-    def _parse_response(self, data: dict) -> list[AuctionResult]:
+    def _parse_response(self, data: dict, cutoff: date | None) -> tuple[list[AuctionResult], bool]:
         results = []
+        hit_old = False
         for prop in data.get("properties", []):
             try:
-                result = self._parse_property(prop)
+                result = self._parse_property(prop, cutoff)
+                if result is None and cutoff is not None:
+                    # Check if this property was skipped because it's too old
+                    auction_dt = prop.get("auctionDateTime")
+                    if auction_dt:
+                        try:
+                            prop_date = datetime.fromisoformat(
+                                auction_dt.replace("Z", "+00:00")
+                            ).date()
+                            if prop_date < cutoff:
+                                hit_old = True
+                                break
+                        except (ValueError, TypeError):
+                            pass
                 if result:
                     results.append(result)
             except Exception as e:
                 logger.warning(f"Holmwood: failed to parse property {prop.get('id')} — {e}")
                 continue
-        return results
+        return results, hit_old
 
-    def _parse_property(self, prop: dict) -> AuctionResult | None:
+    def _parse_property(self, prop: dict, cutoff: date | None = None) -> AuctionResult | None:
         status = prop.get("status")
         if status != 1:
             return None  # Only include SOLD properties with confirmed prices
@@ -74,6 +95,9 @@ class HolmwoodScraper(BaseScraper):
                 ).date()
             except (ValueError, TypeError):
                 pass
+
+        if cutoff and sale_date and sale_date < cutoff:
+            return None
 
         detail = prop.get("propertyDetail") or {}
         beds = detail.get("bedrooms")

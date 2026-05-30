@@ -19,8 +19,10 @@ def main():
 
 
 @main.command()
-def scrape():
+@click.option("--days", default=7, type=int, help="Only fetch results from the last N days. Use 0 for all.")
+def scrape(days):
     """Scrape auction results from all agencies."""
+    lookback = days if days > 0 else None
     db = Database()
     agency_results = {}
     errors = {}
@@ -28,7 +30,7 @@ def scrape():
     for scraper_cls in SCRAPERS:
         scraper = scraper_cls()
         try:
-            results = scraper.scrape()
+            results = scraper.scrape(lookback_days=lookback)
             count = 0
             for r in results:
                 count += db.insert(r)

@@ -20,7 +20,7 @@ class TestHolmwoodScraper:
         data = json.loads(raw)
         scraper = HolmwoodScraper()
 
-        results = scraper._parse_response(data)
+        results, _ = scraper._parse_response(data, cutoff=None)
         assert len(results) > 0
 
         for r in results:
@@ -34,7 +34,7 @@ class TestHolmwoodScraper:
         data = json.loads(raw)
         scraper = HolmwoodScraper()
 
-        results = scraper._parse_response(data)
+        results, _ = scraper._parse_response(data, cutoff=None)
         # In the fixture: 2 SOLD (status=1), 3 Passed In (status=4), 1 Withdrawn & Sold (status=13)
         assert len(results) == 2
 

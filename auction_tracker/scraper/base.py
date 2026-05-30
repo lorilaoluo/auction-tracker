@@ -16,8 +16,13 @@ class BaseScraper(ABC):
     agency_name: str
 
     @abstractmethod
-    def scrape(self) -> list[AuctionResult]:
-        """Run the full scrape flow. Returns list of parsed results."""
+    def scrape(self, lookback_days: int | None = None) -> list[AuctionResult]:
+        """Run the full scrape flow. Returns list of parsed results.
+
+        Args:
+            lookback_days: Only return results from this many days ago.
+                           None means fetch everything.
+        """
         ...
 
     @staticmethod
