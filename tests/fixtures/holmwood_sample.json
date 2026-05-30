@@ -1,0 +1,586 @@
+{
+  "nextPageUrl": "/widget/v3/Pqn/auctions?page=2",
+  "filters": [],
+  "properties": [
+    {
+      "id": 294844,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T23:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "",
+      "street_no": "18",
+      "street": "Burkett Street",
+      "suburb": "Marshland",
+      "state": "NEW ZEALAND",
+      "postcode": "8051",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "18 Burkett Street",
+      "displayAddress": "18 Burkett Street, Marshland",
+      "headline": "Architectural Excellence in Oakbridge ",
+      "currencySymbol": "$",
+      "soldPrice": 0,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 9,
+      "status": 13,
+      "incomeForYield": null,
+      "latestBidAmount": "1300000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3720617%2Fconversions%2F200271290__1778101438-200464-18BurkettSt-001-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "35187396",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1707,
+        "tradingName": "Harcourts Fendalton",
+        "fullAddress": "51 Holmwood Road, Fendalton Can 8014",
+        "unit": "",
+        "streetNo": "51",
+        "street": "Holmwood Road",
+        "suburb": "Fendalton",
+        "state": "Can",
+        "postcode": "8014",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132339%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132341%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132370%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 29899,
+          "firstName": "Jack",
+          "lastName": "Marshall"
+        },
+        {
+          "id": 29485,
+          "firstName": "Jan",
+          "lastName": "Morley"
+        }
+      ],
+      "propertyDetail": {
+        "id": 286848,
+        "propertyId": 294844,
+        "bedrooms": 4,
+        "bathrooms": 2,
+        "totalCarSpaces": 4,
+        "garages": 2,
+        "carPorts": 0,
+        "offStreetParking": 2,
+        "toilets": 2,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-05-07T13:51:02.000000Z",
+        "updatedAt": "2026-05-18T13:54:04.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "House",
+        "yearBuilt": 2026,
+        "stories": 0,
+        "buildingArea": 0,
+        "lotArea": 595
+      },
+      "tenant": null
+    },
+    {
+      "id": 293716,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T23:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "4",
+      "street_no": "15",
+      "street": "Whitmore Street",
+      "suburb": "St Albans",
+      "state": "NEW ZEALAND",
+      "postcode": "8013",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "4/15 Whitmore Street",
+      "displayAddress": "4/15 Whitmore Street, St Albans",
+      "headline": "Retirement Forces Sale. City-Fringe Opportunity!",
+      "currencySymbol": "$",
+      "soldPrice": 0,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 10,
+      "status": 4,
+      "incomeForYield": null,
+      "latestBidAmount": "520000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3729369%2Fconversions%2F198823276__1777426005-110682-4-15WhitmoreStreet-9-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "34851255",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1709,
+        "tradingName": "Harcourts Ilam 2",
+        "fullAddress": "397-399 Ilam Road, Ilam Can 8053",
+        "unit": "",
+        "streetNo": "397-399",
+        "street": "Ilam Road",
+        "suburb": "Ilam",
+        "state": "Can",
+        "postcode": "8053",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132348%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132351%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132372%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 29501,
+          "firstName": "Helen",
+          "lastName": "Thomson"
+        }
+      ],
+      "propertyDetail": {
+        "id": 285720,
+        "propertyId": 293716,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "totalCarSpaces": 1,
+        "garages": 0,
+        "carPorts": 0,
+        "offStreetParking": 1,
+        "toilets": 2,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-04-30T13:54:19.000000Z",
+        "updatedAt": "2026-05-21T13:48:35.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "Townhouse",
+        "yearBuilt": 2022,
+        "stories": 0,
+        "buildingArea": 0,
+        "lotArea": 155
+      },
+      "tenant": null
+    },
+    {
+      "id": 294338,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T23:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "",
+      "street_no": "17",
+      "street": "Horoeka Street",
+      "suburb": "Avonhead",
+      "state": "NEW ZEALAND",
+      "postcode": "8041",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "17 Horoeka Street",
+      "displayAddress": "17 Horoeka Street, Avonhead",
+      "headline": "Modern Living with a Premium Edge in Avonhead",
+      "currencySymbol": "$",
+      "soldPrice": 778000,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 11,
+      "status": 1,
+      "incomeForYield": null,
+      "latestBidAmount": "740000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3720707%2Fconversions%2F199738743__1777930864-10605-DSC03042-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "35269685",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1711,
+        "tradingName": "Harcourts St Albans",
+        "fullAddress": "142 Sherborne Street, Saint Albans Can 8014",
+        "unit": "",
+        "streetNo": "142",
+        "street": "Sherborne Street",
+        "suburb": "Saint Albans",
+        "state": "Can",
+        "postcode": "8014",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132356%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132359%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132374%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 38733,
+          "firstName": "Brodie",
+          "lastName": "Fransen"
+        }
+      ],
+      "propertyDetail": {
+        "id": 286342,
+        "propertyId": 294338,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "totalCarSpaces": 2,
+        "garages": 1,
+        "carPorts": 0,
+        "offStreetParking": 1,
+        "toilets": 2,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-05-05T14:01:13.000000Z",
+        "updatedAt": "2026-05-18T13:56:25.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "House",
+        "yearBuilt": 2020,
+        "stories": 0,
+        "buildingArea": 137,
+        "lotArea": 0
+      },
+      "tenant": null
+    },
+    {
+      "id": 294337,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T23:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "",
+      "street_no": "2",
+      "street": "Dray Place",
+      "suburb": "Halswell",
+      "state": "NEW ZEALAND",
+      "postcode": "8025",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "2 Dray Place",
+      "displayAddress": "2 Dray Place, Halswell",
+      "headline": "Elegant Eco Luxury!",
+      "currencySymbol": "$",
+      "soldPrice": 0,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 12,
+      "status": 4,
+      "incomeForYield": null,
+      "latestBidAmount": "1000000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3720647%2Fconversions%2F198983116__1777501366-26790-1001-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "33824094",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1708,
+        "tradingName": "Harcourts Ilam",
+        "fullAddress": "292 Clyde Road, Bryndwr Can 8053",
+        "unit": "",
+        "streetNo": "292",
+        "street": "Clyde Road",
+        "suburb": "Bryndwr",
+        "state": "Can",
+        "postcode": "8053",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132342%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132347%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132371%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 29939,
+          "firstName": "Corina",
+          "lastName": "Grey"
+        },
+        {
+          "id": 34549,
+          "firstName": "Allie",
+          "lastName": "Franks"
+        }
+      ],
+      "propertyDetail": {
+        "id": 286341,
+        "propertyId": 294337,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "totalCarSpaces": 4,
+        "garages": 2,
+        "carPorts": 0,
+        "offStreetParking": 2,
+        "toilets": 0,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-05-05T13:59:45.000000Z",
+        "updatedAt": "2026-05-18T13:54:40.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "House",
+        "yearBuilt": 2024,
+        "stories": 0,
+        "buildingArea": 0,
+        "lotArea": 725
+      },
+      "tenant": null
+    },
+    {
+      "id": 294336,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T23:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "",
+      "street_no": "21",
+      "street": "Shirley Road",
+      "suburb": "Shirley",
+      "state": "NEW ZEALAND",
+      "postcode": "8013",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "21 Shirley Road",
+      "displayAddress": "21 Shirley Road, Shirley",
+      "headline": "Affordable, Cute and City Fringe!",
+      "currencySymbol": "$",
+      "soldPrice": null,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 13,
+      "status": 4,
+      "incomeForYield": null,
+      "latestBidAmount": "501000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3720637%2Fconversions%2F199755503__1777933697-27987-AR506160-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "35303107",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1708,
+        "tradingName": "Harcourts Ilam",
+        "fullAddress": "292 Clyde Road, Bryndwr Can 8053",
+        "unit": "",
+        "streetNo": "292",
+        "street": "Clyde Road",
+        "suburb": "Bryndwr",
+        "state": "Can",
+        "postcode": "8053",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132342%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132347%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132371%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 29942,
+          "firstName": "Reubyn",
+          "lastName": "Bisschops"
+        }
+      ],
+      "propertyDetail": {
+        "id": 286340,
+        "propertyId": 294336,
+        "bedrooms": 3,
+        "bathrooms": 1,
+        "totalCarSpaces": 3,
+        "garages": 1,
+        "carPorts": 0,
+        "offStreetParking": 2,
+        "toilets": 0,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-05-05T13:59:42.000000Z",
+        "updatedAt": "2026-05-18T13:54:33.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "House",
+        "yearBuilt": 1940,
+        "stories": 0,
+        "buildingArea": 0,
+        "lotArea": 472
+      },
+      "tenant": null
+    },
+    {
+      "id": 295871,
+      "auctionType": 1,
+      "auctionDateTime": "2026-05-27T22:00:00+00:00",
+      "auctionEndDateTime": null,
+      "auctionPausedAt": null,
+      "broughtForward": false,
+      "unit": "",
+      "street_no": "5",
+      "street": "Wildberry Street",
+      "suburb": "Woolston",
+      "state": "NEW ZEALAND",
+      "postcode": "8023",
+      "country": "New Zealand",
+      "city": "",
+      "title": null,
+      "streetAddress": "5 Wildberry Street",
+      "displayAddress": "5 Wildberry Street, Woolston",
+      "headline": "AUCTION BROUGHT FORWARD - Thursday 28 May 2026 at 10am",
+      "currencySymbol": "$",
+      "soldPrice": 736000,
+      "isLiveProperty": false,
+      "hasOnlineBidding": false,
+      "presentation": {
+        "id": 40257,
+        "isOrderOfSaleFinalised": true,
+        "propertyCount": 13,
+        "introText": "Harcourts Holmwood",
+        "venue": "Holmwood Auction Room"
+      },
+      "orderOfSaleIndex": 1,
+      "status": 1,
+      "incomeForYield": null,
+      "latestBidAmount": "736000.00",
+      "bidderRegUrl": null,
+      "images": [
+        "https://d1jcje6wecjjsz.cloudfront.net/media%2F3738287%2Fconversions%2F200753410__1778448908-277265-5WildberrySt-001-thumb-800x534.jpg"
+      ],
+      "propertyListingDetail": {
+        "sourceListingId": "35505741",
+        "listingDataSource": null,
+        "listingDataSourceMlsCode": null
+      },
+      "isGeneralGoods": false,
+      "subscriber": {
+        "id": 1707,
+        "tradingName": "Harcourts Fendalton",
+        "fullAddress": "51 Holmwood Road, Fendalton Can 8014",
+        "unit": "",
+        "streetNo": "51",
+        "street": "Holmwood Road",
+        "suburb": "Fendalton",
+        "state": "Can",
+        "postcode": "8014",
+        "logos": {
+          "logo": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132339%2Fharcourts_holmwood_horizontal_300x39.png",
+          "secondaryLogoForColouredBackground": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132341%2Fharcourts_holmwood_horizontal_300x39.png"
+        },
+        "youtubeThumbnailImageSrc": "https://d1jcje6wecjjsz.cloudfront.net/media%2F1132370%2Fyoutube_thumbnail.jpg",
+        "colors": {
+          "comm_tile_bg_color_1": "transparent"
+        }
+      },
+      "agents": [
+        {
+          "id": 29478,
+          "firstName": "Zani",
+          "lastName": "Polson"
+        }
+      ],
+      "propertyDetail": {
+        "id": 287875,
+        "propertyId": 295871,
+        "bedrooms": 3,
+        "bathrooms": 1,
+        "totalCarSpaces": 3,
+        "garages": 1,
+        "carPorts": 0,
+        "offStreetParking": 2,
+        "toilets": 1,
+        "livingRooms": 0,
+        "swimmingPools": 0,
+        "createdAt": "2026-05-14T13:49:25.000000Z",
+        "updatedAt": "2026-05-23T13:35:46.000000Z",
+        "deletedAt": null,
+        "energyEfficiencyRating": 0,
+        "propertyTypeCategory": "Residential",
+        "propertyType": "House",
+        "yearBuilt": null,
+        "stories": 0,
+        "buildingArea": 0,
+        "lotArea": 507
+      },
+      "tenant": null
+    }
+  ]
+}
