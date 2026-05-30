@@ -13,22 +13,21 @@ def overview_tab():
     st.header("Overview")
     stats = db.get_stats()
 
-    col1, col2, col3, col4 = st.columns(4)
+    passed_in = stats["total"] - stats["with_price"]
+
+    col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.metric("Total Sales", stats["total"])
+        st.metric("Total Results", stats["total"])
     with col2:
+        st.metric("Sold", stats["with_price"])
+    with col3:
+        st.metric("Passed In", passed_in)
+    with col4:
         median = f"${stats['median_price']:,.0f}" if stats["median_price"] else "N/A"
         st.metric("Median Price", median)
-    with col3:
+    with col5:
         avg = f"${stats['avg_price']:,.0f}" if stats["avg_price"] else "N/A"
         st.metric("Average Price", avg)
-    with col4:
-        price_range = (
-            f"${stats['min_price']:,.0f} - ${stats['max_price']:,.0f}"
-            if stats["min_price"] and stats["max_price"]
-            else "N/A"
-        )
-        st.metric("Price Range", price_range)
 
     st.subheader("Last Scrape per Agency")
     last = db.get_last_scrape_per_agency()
@@ -55,8 +54,10 @@ def trends_tab():
     st.subheader("Average Sale Price Over Time")
     st.line_chart(df.set_index("month")["avg_price"])
 
-    st.subheader("Number of Sales Over Time")
-    st.bar_chart(df.set_index("month")["count"])
+    st.subheader("Results Over Time")
+    chart_df = df.set_index("month")[["sold", "passed_in"]]
+    chart_df.columns = ["Sold", "Passed In"]
+    st.bar_chart(chart_df)
 
     st.subheader("Filter by Suburb")
     suburbs = db.get_all_suburbs()
@@ -95,8 +96,11 @@ def explore_tab():
             | ((df["sale_price"] >= min_price) & (df["sale_price"] <= max_price))
         ]
 
+    df["status"] = df["sale_price"].apply(
+        lambda p: "Sold" if p is not None and p > 0 else "Passed In"
+    )
     st.dataframe(
-        df[["address", "suburb", "sale_price", "sale_date", "agency", "bedrooms", "bathrooms"]],
+        df[["address", "suburb", "status", "sale_price", "sale_date", "agency", "bedrooms", "bathrooms"]],
         use_container_width=True,
     )
 

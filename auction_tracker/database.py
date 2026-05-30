@@ -123,14 +123,15 @@ class Database:
         return [r["suburb"] for r in rows]
 
     def get_monthly_medians(self) -> list[dict]:
-        """Monthly avg price for trend charts."""
+        """Monthly sold/passed-in counts and avg price for trend charts."""
         rows = self.conn.execute("""
             SELECT
                 strftime('%Y-%m', sale_date) as month,
-                COUNT(*) as count,
+                COUNT(*) as total,
+                COUNT(sale_price) as sold,
+                COUNT(*) - COUNT(sale_price) as passed_in,
                 AVG(sale_price) as avg_price
             FROM auction_results
-            WHERE sale_price IS NOT NULL
             GROUP BY month
             ORDER BY month
         """).fetchall()

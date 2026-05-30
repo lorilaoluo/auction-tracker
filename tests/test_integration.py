@@ -54,7 +54,9 @@ class TestEndToEnd:
 
         monthly = db.get_monthly_medians()
         assert len(monthly) == 1
-        assert monthly[0]["count"] == 3
+        assert monthly[0]["total"] == 3
+        assert monthly[0]["sold"] == 3
+        assert monthly[0]["passed_in"] == 0
 
         db.close()
 
