@@ -34,30 +34,36 @@ class GrenadierScraper(BaseScraper):
                 page.goto(self.url, timeout=30_000)
                 page.wait_for_load_state("networkidle", timeout=15_000)
                 page.wait_for_timeout(3000)
-                cutoff = date.today() - timedelta(days=lookback_days) if lookback_days else None
-                return self.extract_results(page, cutoff)
+                sold_cutoff = date.today() - timedelta(days=lookback_days) if lookback_days else None
+                passed_in_cutoff = date.today() - timedelta(days=30)
+                return self.extract_results(page, sold_cutoff, passed_in_cutoff)
             except Exception as e:
                 logger.error(f"Grenadier: scrape failed — {e}")
                 raise
             finally:
                 browser.close()
 
-    def extract_results(self, page: Page, cutoff: date | None = None) -> list[AuctionResult]:
+    def extract_results(self, page: Page, sold_cutoff: date | None = None, passed_in_cutoff: date | None = None) -> list[AuctionResult]:
         html = page.content()
         soup = BeautifulSoup(html, "html.parser")
         results = []
+
+        # Stop when past the more permissive cutoff
+        stop_cutoff = passed_in_cutoff
+        if sold_cutoff and (passed_in_cutoff is None or sold_cutoff < passed_in_cutoff):
+            stop_cutoff = sold_cutoff
 
         for container in soup.select(".result-container"):
             date_header = container.select_one("h3")
             sale_date = self._parse_date(date_header.get_text(strip=True)) if date_header else None
 
-            # Stop if this container's date is older than the cutoff
-            if cutoff and sale_date and sale_date < cutoff:
+            # Stop if this container's date is older than the stop cutoff
+            if stop_cutoff and sale_date and sale_date < stop_cutoff:
                 break
 
             for row in container.select("tbody tr"):
                 try:
-                    result = self._parse_row(row, sale_date)
+                    result = self._parse_row(row, sale_date, sold_cutoff, passed_in_cutoff)
                     if result:
                         results.append(result)
                 except Exception as e:
@@ -66,7 +72,7 @@ class GrenadierScraper(BaseScraper):
 
         return results
 
-    def _parse_row(self, row, sale_date: date | None) -> AuctionResult | None:
+    def _parse_row(self, row, sale_date: date | None, sold_cutoff: date | None = None, passed_in_cutoff: date | None = None) -> AuctionResult | None:
         cells = row.select("td")
         if len(cells) < 4:
             return None
@@ -74,15 +80,20 @@ class GrenadierScraper(BaseScraper):
         address_text = cells[1].get_text(strip=True)
         status_text = cells[3].get_text(strip=True)
 
-        # Only include SOLD properties
-        if not status_text.upper().startswith("SOLD"):
+        status_upper = status_text.upper()
+        if status_upper.startswith("SOLD"):
+            sale_price = self._extract_price(status_text)
+            if sale_price is None:
+                return None
+            if sold_cutoff and sale_date and sale_date < sold_cutoff:
+                return None
+        elif status_upper.startswith("PASSED"):
+            sale_price = None
+            if passed_in_cutoff and sale_date and sale_date < passed_in_cutoff:
+                return None
+        else:
             return None
 
-        sale_price = self._extract_price(status_text)
-        if sale_price is None:
-            return None
-
-        # Parse address: "19 Wakeman Way, Kaiapoi, NZ 7630" or "1/18 Sawtell Place, Northcote, NZ 8052"
         street, suburb = self._parse_address(address_text)
 
         source_url = self.url

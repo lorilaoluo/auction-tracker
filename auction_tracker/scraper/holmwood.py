@@ -22,10 +22,16 @@ class HolmwoodScraper(BaseScraper):
         """Fetch past auction results from the AuctionsLive API.
 
         Args:
-            lookback_days: Only return results from this many days ago.
+            lookback_days: Only return SOLD results from this many days ago.
                            None means fetch everything (first run).
         """
-        cutoff = date.today() - timedelta(days=lookback_days) if lookback_days else None
+        sold_cutoff = date.today() - timedelta(days=lookback_days) if lookback_days else None
+        passed_in_cutoff = date.today() - timedelta(days=30)
+
+        # Paginate until we're past the more permissive cutoff
+        stop_cutoff = passed_in_cutoff
+        if sold_cutoff and sold_cutoff < passed_in_cutoff:
+            stop_cutoff = sold_cutoff
 
         results = []
         page = 1
@@ -38,7 +44,7 @@ class HolmwoodScraper(BaseScraper):
             resp.raise_for_status()
             data = resp.json()
 
-            parsed, hit_old = self._parse_response(data, cutoff)
+            parsed, hit_old = self._parse_response(data, sold_cutoff, passed_in_cutoff, stop_cutoff)
             results.extend(parsed)
 
             next_page = data.get("nextPageUrl")
@@ -48,21 +54,21 @@ class HolmwoodScraper(BaseScraper):
 
         return results
 
-    def _parse_response(self, data: dict, cutoff: date | None) -> tuple[list[AuctionResult], bool]:
+    def _parse_response(self, data: dict, sold_cutoff: date | None, passed_in_cutoff: date, stop_cutoff: date) -> tuple[list[AuctionResult], bool]:
         results = []
         hit_old = False
         for prop in data.get("properties", []):
             try:
-                result = self._parse_property(prop, cutoff)
-                if result is None and cutoff is not None:
-                    # Check if this property was skipped because it's too old
+                result = self._parse_property(prop, sold_cutoff, passed_in_cutoff)
+                if result is None:
+                    # Check if this property is too old for any cutoff
                     auction_dt = prop.get("auctionDateTime")
                     if auction_dt:
                         try:
                             prop_date = datetime.fromisoformat(
                                 auction_dt.replace("Z", "+00:00")
                             ).date()
-                            if prop_date < cutoff:
+                            if prop_date < stop_cutoff:
                                 hit_old = True
                                 break
                         except (ValueError, TypeError):
@@ -74,13 +80,20 @@ class HolmwoodScraper(BaseScraper):
                 continue
         return results, hit_old
 
-    def _parse_property(self, prop: dict, cutoff: date | None = None) -> AuctionResult | None:
+    def _parse_property(self, prop: dict, sold_cutoff: date | None = None, passed_in_cutoff: date | None = None) -> AuctionResult | None:
         status = prop.get("status")
-        if status != 1:
-            return None  # Only include SOLD properties with confirmed prices
-
-        sold_price = prop.get("soldPrice")
-        if not sold_price or sold_price == 0:
+        if status == 1:
+            # SOLD — require a real price
+            sold_price = prop.get("soldPrice")
+            if not sold_price or sold_price == 0:
+                return None
+            sale_price = float(sold_price)
+            cutoff = sold_cutoff
+        elif status == 4:
+            # PASSED IN — no sale price
+            sale_price = None
+            cutoff = passed_in_cutoff
+        else:
             return None
 
         display_address = prop.get("displayAddress", "")
@@ -110,7 +123,7 @@ class HolmwoodScraper(BaseScraper):
         return AuctionResult(
             address=self._extract_street(display_address),
             suburb=suburb,
-            sale_price=float(sold_price),
+            sale_price=sale_price,
             sale_date=sale_date or date.today(),
             agency=self.agency_name,
             bedrooms=int(beds) if beds else None,

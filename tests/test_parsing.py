@@ -20,7 +20,7 @@ class TestHolmwoodScraper:
         data = json.loads(raw)
         scraper = HolmwoodScraper()
 
-        results, _ = scraper._parse_response(data, cutoff=None)
+        results, _ = scraper._parse_response(data, sold_cutoff=None, passed_in_cutoff=date(2020,1,1), stop_cutoff=date(2020,1,1))
         assert len(results) > 0
 
         for r in results:
@@ -28,19 +28,25 @@ class TestHolmwoodScraper:
             assert r.agency == "Holmwood"
             assert r.source_url
 
-    def test_only_sold_properties_extracted(self):
-        """Only status=1 (SOLD) properties should be included."""
+    def test_sold_and_passed_in_extracted(self):
+        """SOLD (status=1) and PASSED IN (status=4) properties should be included."""
         raw = load_fixture("holmwood_sample.json")
         data = json.loads(raw)
         scraper = HolmwoodScraper()
 
-        results, _ = scraper._parse_response(data, cutoff=None)
+        results, _ = scraper._parse_response(data, sold_cutoff=None, passed_in_cutoff=date(2020,1,1), stop_cutoff=date(2020,1,1))
         # In the fixture: 2 SOLD (status=1), 3 Passed In (status=4), 1 Withdrawn & Sold (status=13)
-        assert len(results) == 2
+        assert len(results) == 5
 
-        for r in results:
-            assert r.sale_price is not None
+        sold = [r for r in results if r.sale_price is not None]
+        passed_in = [r for r in results if r.sale_price is None]
+        assert len(sold) == 2
+        assert len(passed_in) == 3
+
+        for r in sold:
             assert r.sale_price > 0
+        for r in passed_in:
+            assert r.sale_price is None
 
     def test_price_parsing(self):
         assert HolmwoodScraper._clean_price("$850,000") == 850_000
@@ -70,7 +76,7 @@ class TestHolmwoodScraper:
         scraper = HolmwoodScraper()
         results = scraper.scrape()
 
-        assert len(results) == 2
+        assert len(results) == 5
         assert results[0].agency == "Holmwood"
 
 
